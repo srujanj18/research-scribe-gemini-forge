@@ -26,11 +26,13 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					hover: 'hsl(var(--primary-hover))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					hover: 'hsl(var(--secondary-hover))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -62,6 +64,20 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-academic': 'var(--gradient-academic)',
+				'gradient-scholarly': 'var(--gradient-scholarly)',
+				'gradient-research': 'var(--gradient-research)'
+			},
+			boxShadow: {
+				'paper': 'var(--shadow-paper)',
+				'elevated': 'var(--shadow-elevated)',
+				'academic': 'var(--shadow-academic)'
+			},
+			fontFamily: {
+				'academic': 'var(--font-academic)',
+				'mono': 'var(--font-mono)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
