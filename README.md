@@ -1,73 +1,226 @@
-# Welcome to your Lovable project
+# Research Scribe - AI Research Paper Generator & Reviewer
 
-## Project info
+An AI-powered platform for generating, summarizing, and reviewing academic research papers using Google's Gemini Pro 1.5, integrated with arXiv for research paper access.
 
-**URL**: https://lovable.dev/projects/83eaac4e-4431-49a1-8d20-a85fcc890b32
+## 🚀 Features
 
-## How can I edit this code?
+- **AI-Powered Paper Generation**: Generate complete research papers in LaTeX format using IEEEtran document class
+- **Paper Summarization**: Extract key insights from uploaded PDF research papers
+- **Peer Review System**: Get comprehensive academic reviews with strengths, weaknesses, and recommendations
+- **Advanced Analysis**: Check for plagiarism, assess novelty, and analyze citation networks
+- **LaTeX to PDF Conversion**: Compile LaTeX documents to PDF with proper bibliography handling
+- **Academic Chatbot**: Get assistance from an AI research assistant and LaTeX expert
+- **Modern UI**: Built with React, TypeScript, and shadcn/ui components
+- **Responsive Design**: Works seamlessly across desktop and mobile devices
 
-There are several ways of editing your application.
+## 🛠 Tech Stack
 
-**Use Lovable**
+### Frontend
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **shadcn/ui** for modern UI components
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+- **React Hook Form** with Zod validation
+- **TanStack Query** for API state management
+- **LaTeX.js** for LaTeX rendering in the browser
+- **Recharts** for data visualization
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/83eaac4e-4431-49a1-8d20-a85fcc890b32) and start prompting.
+### Backend
+- **Flask** with CORS support
+- **Google Generative AI (Gemini Pro 1.5)**
+- **PyPDF2** for PDF text extraction
+- **LaTeX compilation** with pdflatex and bibtex
+- **dotenv** for environment variable management
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📋 Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v18 or higher)
+- Python 3.8+
+- pdflatex (for LaTeX compilation)
+- Google Gemini API key
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🔧 Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Backend Setup
 
-Follow these steps:
+1. Navigate to the backend directory:
+   ```bash
+   cd python-backend
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. Set up environment variables:
+   - Copy `.env` file and add your Gemini API key:
+   ```
+   GEMINI_API_KEY=your_api_key_here
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+### Running the Backend
+
+1. From the python-backend directory:
+   ```bash
+   python app.py
+   ```
+
+2. The backend will run on [http://localhost:5000](http://localhost:5000)
+
+## 📖 Usage
+
+### Generating Research Papers
+1. Navigate to the Paper Generator section
+2. Fill in the topic, research question, methodology, length, domain, and style
+3. Click "Generate Paper" to create a LaTeX-formatted research paper
+
+### Summarizing Papers
+1. Go to the Paper Summarizer section
+2. Upload a PDF research paper or provide an arXiv ID
+3. Get an AI-generated summary of the paper
+
+### Peer Review
+1. Access the Peer Reviewer section
+2. Upload a paper for review
+3. Receive detailed feedback on strengths, weaknesses, and recommendations
+
+### Advanced Analysis
+- **Plagiarism Check**: Analyze text for potential plagiarism
+- **Novelty Assessment**: Evaluate the originality of research content
+- **Citation Analysis**: Examine citation networks and impact
+
+### LaTeX to PDF
+- Convert generated LaTeX code to PDF format
+- Automatic bibliography compilation with bibtex
+
+## 🔌 API Endpoints
+
+### Paper Generation
+```
+POST /api/generate-paper
+```
+Generates a complete research paper in LaTeX format.
+
+**Request Body:**
+```json
+{
+  "topic": "Machine Learning in Healthcare",
+  "researchQuestion": "How can ML improve diagnostic accuracy?",
+  "methodology": "Systematic review and meta-analysis",
+  "length": "10",
+  "domain": "Computer Science",
+  "style": "Academic"
+}
 ```
 
-**Edit a file directly in GitHub**
+### Paper Summarization
+```
+POST /api/summarize
+```
+Summarizes an uploaded research paper.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**Request:**
+- Form data with `paperFile` (PDF) or JSON with `arxivId`
 
-**Use GitHub Codespaces**
+### Peer Review
+```
+POST /api/review
+```
+Provides comprehensive peer review feedback.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+**Request:**
+- Form data with `paperFile` (PDF) or JSON with `arxivId`
 
-## What technologies are used for this project?
+### Analysis
+```
+POST /api/analyze
+```
+Performs various types of analysis on research content.
 
-This project is built with:
+**Request Body:**
+```json
+{
+  "inputText": "Your research text here",
+  "type": "plagiarism|novelty|citation"
+}
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Chatbot
+```
+POST /api/chatbot
+```
+Interacts with the academic research assistant.
 
-## How can I deploy this project?
+**Request Body:**
+```json
+{
+  "message": "Your question here"
+}
+```
 
-Simply open [Lovable](https://lovable.dev/projects/83eaac4e-4431-49a1-8d20-a85fcc890b32) and click on Share -> Publish.
+### LaTeX to PDF
+```
+POST /api/latex-to-pdf
+```
+Compiles LaTeX code to PDF.
 
-## Can I connect a custom domain to my Lovable project?
+**Request Body:**
+```json
+{
+  "latex": "Your LaTeX code here"
+}
+```
 
-Yes, you can!
+## 🤝 Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Google Gemini Pro 1.5 for AI capabilities
+- arXiv for research paper database
+- shadcn/ui for beautiful UI components
+- The academic community for inspiration
+
+## 📞 Support
+
+For questions or support, please open an issue on GitHub or contact the development team.
+
+---
+
+**Research Scribe Team** - Making academic research more accessible through AI
